@@ -39,6 +39,16 @@ def update
 end
 #结束---
 
+#建立删除功能
+def destroy
+  @group = Group.find(params[:id])
+  @group.destroy
+  flash[:alert] = "Group deleted"
+  redirect_to groups_path
+end
+#结束---
+
+
 
 #此处是实作new里表单送出的信息b部分
 private
