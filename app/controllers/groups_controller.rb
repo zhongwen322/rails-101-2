@@ -16,9 +16,9 @@ end
 #结束--
 
 #建立修改功能
-def edit
+ def edit
   @group = Group.find(params[:id])
-end
+ end
 #结束--
 
 
