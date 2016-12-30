@@ -22,13 +22,25 @@ end
 #结束--
 
 
-
-#此处是实作new里表单送出的信息
+#此处是实作new里表单送出的信息a部分
 def create
   @group = Group.new(group_params)
   @group.save
   redirect_to groups_path
 end
+#结束---
+
+
+#建立更新功能
+def update
+  @group = Group.find(params[:id])
+  @group.update(group_params)
+  redirect_to groups_path,notice:"Update Success"
+end
+#结束---
+
+
+#此处是实作new里表单送出的信息b部分
 private
 def group_params
   params.require(:group).permit(:title, :description)
