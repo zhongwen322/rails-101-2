@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
-#此处是实作新建group的功能
+#建立新建功能
 def new
   @group = Group.new
 end
@@ -14,6 +14,13 @@ def show
   @group = Group.find(params[:id])
 end
 #结束--
+
+#建立修改功能
+def edit
+  @group = Group.find(params[:id])
+end
+#结束--
+
 
 
 #此处是实作new里表单送出的信息
