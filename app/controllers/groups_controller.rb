@@ -25,8 +25,11 @@ end
 #此处是实作new里表单送出的信息a部分
 def create
   @group = Group.new(group_params)
-  @group.save
+if @group.save
   redirect_to groups_path
+else
+  render :new
+end
 end
 #结束---
 
@@ -52,10 +55,8 @@ end
 
 #此处是实作new里表单送出的信息b部分
 private
-def group_params
+  def group_params
   params.require(:group).permit(:title, :description)
+  end
 end
 #结束---
-
-
-end
