@@ -19,9 +19,11 @@ end
 #建立修改功能
  def edit
   @group = Group.find(params[:id])
+
   if current_user != @group.user
     redirect_to root_path, alert: "You have no permission."
   end
+  
  end
 #结束--
 
