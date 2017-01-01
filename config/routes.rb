@@ -12,5 +12,13 @@ end
 
     resources :posts
   end
+  
+#可以看到自己参与的所有群组
+namespace :account do
+  resources :groups
+end
+#结束---
+
+
   root 'groups#index'
 end
