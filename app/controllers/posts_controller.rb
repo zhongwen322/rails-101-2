@@ -28,6 +28,30 @@ def edit
 end
 #end---
 
+
+#建立更新功能
+def update
+
+if @group.update(group_params)
+  redirect_to groups_path, notice: 'Update Success'
+else
+  render :edit
+end
+
+end
+#结束---
+
+
+#实作删除
+def destroy
+  @post = Post.find(params[:id])
+  @post.destroy
+  flash[:alert] = "Post deleted"
+  redirect_to groups_path
+end
+#end---
+
+
   private
 
   def post_params
