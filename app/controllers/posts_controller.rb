@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :create]
 
+
   def new
     @group = Group.find(params[:group_id])
     @post = Post.new
@@ -20,6 +21,12 @@ class PostsController < ApplicationController
     end
   end
 
+#实作修改
+def edit
+  @group = Group.find(params[:group_id])
+  @post = Post.find(params[:id])
+end
+#end---
 
   private
 
