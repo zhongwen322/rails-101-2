@@ -14,7 +14,7 @@ end
 #此处是实作浏览功能，点群组标题链接如 Board 1 能打开该群组
 def show
    @group = Group.find(params[:id])
-   @posts = @group.posts
+   @posts = @group.posts.order("created_at DESC")
  end
 #结束--
 
