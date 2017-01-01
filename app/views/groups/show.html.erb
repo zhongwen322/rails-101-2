@@ -6,9 +6,14 @@
 <!--判断是不是群组成员 -->
 <span class="pull-right">
 <% if current_user && current_user.is_member_of?(@group) %>
-<label class="label label-success">群组成员</label>
+<label class="label label-success"> 群组成员 </label>
+<!--实际操作“加入群组”或“退出群组”-->
+<%= link_to("Quit Group", quit_group_path(@group), method: :post, class: "btn btn-defalut") %>
 <% else %>
-<label class="label label-warning">不是群组成员</label>
+<label class="label label-warning"> 不是群组成员 </label>
+<%= link_to("Join Group", join_group_path(@group), method: :post, class: "btn btn-default") %>
+
+<!--结束-->
 <% end %>
 </span>
 
