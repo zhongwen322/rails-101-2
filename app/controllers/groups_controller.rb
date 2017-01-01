@@ -31,6 +31,9 @@ def create
   @group = Group.new(group_params)
   @group.user = current_user
 if @group.save
+  #User 在建立 group 后自动成为 group 的一员,只有下面这行是
+  current_user.join!(@group)
+
   redirect_to groups_path
 else
   render :new
