@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user! ,only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
+  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+   before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
   def index
     @groups = Group.all
   end
@@ -13,9 +13,11 @@ end
 
 #此处是实作浏览功能，点群组标题链接如 Board 1 能打开该群组
 def show
-  @group = Group.find(params[:id])
-end
+   @group = Group.find(params[:id])
+   @posts = @group.posts
+ end
 #结束--
+
 
 #建立修改功能
  def edit

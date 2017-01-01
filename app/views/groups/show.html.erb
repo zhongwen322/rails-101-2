@@ -11,5 +11,29 @@
 <h2><%= @group.title %></h2>
 
 <p><%= @group.description %></p>
+<!-- 在点击write a post之后 会出现，文章发表者和发表时间 -->
 
+  <p><%= @group.description %></p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>文章内容</th>
+        <th>发表者</th>
+        <th>发表时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.content %></td>
+          <td><%= post.user.email %></td>
+          <td><%= post.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<!--结束 -->
 </div>
