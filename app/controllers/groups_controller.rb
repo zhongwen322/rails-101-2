@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user! ,only: [:new, :create, :update, :destroy]
+  before_action :authenticate_user! ,only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
   def index
     @groups = Group.all
   end
@@ -18,12 +19,7 @@ end
 
 #建立修改功能
  def edit
-  @group = Group.find(params[:id])
 
-  if current_user != @group.user
-    redirect_to root_path, alert: "You have no permission."
-  end
-  
  end
 #结束--
 
@@ -43,11 +39,7 @@ end
 
 #建立更新功能
 def update
-  @group = Group.find(params[:id])
 
-  if current_user != @group.user
-    redirect_to root_path, alert: "You have no permission."
-  end
 
 if @group.update(group_params)
   redirect_to groups_path, notice: 'Update Success'
@@ -60,11 +52,7 @@ end
 
 #建立删除功能
 def destroy
-  @group = Group.find(params[:id])
 
-  if current_user != @group.user
-    redirect_to root_path, alert: "You have no permission."
-  end
 
   @group.destroy
   flash[:alert] = "Group deleted"
@@ -76,6 +64,16 @@ end
 
 #此处是实作new里表单送出的信息b部分
 private
+
+#加入find_group_and_check_permission来打包update,destroy还有edit的冗余代码
+def find_group_and_check_permission
+  @group = Group.find(params[:id])
+  if current_user != @group.user
+    redirect_to root_path, alert: "You have no permission."
+  end
+end
+#结束---
+
   def group_params
   params.require(:group).permit(:title, :description)
   end
